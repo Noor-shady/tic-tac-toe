@@ -1,5 +1,6 @@
 class TicTacToe {
     constructor() {
+        // Cache DOM elements
         this.statusDisplay = document.querySelector('.game-status');
         this.cells = document.querySelectorAll('.cell');
         this.restartBtn = document.querySelector('.game-restart');
@@ -16,3 +17,33 @@ class TicTacToe {
             // Diagonals
             [0, 4, 8], [2, 4, 6]
         ];
+
+        this.init();
+    }
+
+    // --- Messages ---
+    winningMessage = () => `Player ${this.currentPlayer} has won!`;
+    drawMessage = () => `Game ended in a draw!`;
+    currentPlayerTurn = () => `It's ${this.currentPlayer}'s turn`;
+
+    init() {
+        this.statusDisplay.innerHTML = this.currentPlayerTurn();
+
+        this.cells.forEach(cell => {
+            // Support mouse clicks
+            cell.addEventListener('click', (e) => this.handleCellClick(e));
+            // Support keyboard navigation (Accessibility)
+            cell.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.handleCellClick(e);
+                }
+            });
+        });
+
+        this.restartBtn.addEventListener('click', () => this.handleRestartGame());
+    }
+
+    handleCellClick(event) {
+        const clickedCell = event.target;
+        const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
