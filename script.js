@@ -83,3 +83,46 @@ class TicTacToe {
         if (roundWon) {
             this.statusDisplay.innerHTML = this.winningMessage();
             this.gameActive = false;
+            
+            winningLine.forEach(index => {
+                this.cells[index].classList.add('winning-cell');
+            });
+            return;
+        }
+
+        const roundDraw = !this.gameState.includes("");
+        if (roundDraw) {
+            this.statusDisplay.innerHTML = this.drawMessage();
+            this.gameActive = false;
+            return;
+        }
+
+        this.handlePlayerChange();
+    }
+
+    handlePlayerChange() {
+        this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
+        this.statusDisplay.innerHTML = this.currentPlayerTurn();
+    }
+
+    handleRestartGame() {
+        this.gameActive = true;
+        this.currentPlayer = "X";
+        this.gameState = ["", "", "", "", "", "", "", "", ""];
+        this.statusDisplay.innerHTML = this.currentPlayerTurn();
+
+        this.cells.forEach(cell => {
+            cell.innerHTML = "";
+            cell.removeAttribute('data-player');
+            cell.classList.remove('winning-cell');
+            // Reset basic accessibility labels
+            const index = cell.getAttribute('data-cell-index');
+            cell.setAttribute('aria-label', `Cell ${parseInt(index) + 1}`);
+        });
+    }
+}
+
+// Instantiate the game once the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new TicTacToe();
+});
