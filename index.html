@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A classic Tic-Tac-Toe game built with modern HTML, CSS, and Vanilla JavaScript.">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <section class="game-container">
+    <main class="game-container">
         <h1 class="game-title">Tic Tac Toe</h1>
         
-        <h2 class="game-status">It's X's Turn</h2>
+        <h2 class="game-status" aria-live="polite">It's X's Turn</h2>
 
         <div class="game-grid">
-            <div data-cell-index="0" class="cell"></div>
-            <div data-cell-index="1" class="cell"></div>
-            <div data-cell-index="2" class="cell"></div>
-            <div data-cell-index="3" class="cell"></div>
-            <div data-cell-index="4" class="cell"></div>
-            <div data-cell-index="5" class="cell"></div>
-            <div data-cell-index="6" class="cell"></div>
-            <div data-cell-index="7" class="cell"></div>
-            <div data-cell-index="8" class="cell"></div>
+            <div data-cell-index="0" class="cell" role="button" tabindex="0" aria-label="Top Left Cell"></div>
+            <div data-cell-index="1" class="cell" role="button" tabindex="0" aria-label="Top Center Cell"></div>
+            <div data-cell-index="2" class="cell" role="button" tabindex="0" aria-label="Top Right Cell"></div>
+            <div data-cell-index="3" class="cell" role="button" tabindex="0" aria-label="Middle Left Cell"></div>
+            <div data-cell-index="4" class="cell" role="button" tabindex="0" aria-label="Center Cell"></div>
+            <div data-cell-index="5" class="cell" role="button" tabindex="0" aria-label="Middle Right Cell"></div>
+            <div data-cell-index="6" class="cell" role="button" tabindex="0" aria-label="Bottom Left Cell"></div>
+            <div data-cell-index="7" class="cell" role="button" tabindex="0" aria-label="Bottom Center Cell"></div>
+            <div data-cell-index="8" class="cell" role="button" tabindex="0" aria-label="Bottom Right Cell"></div>
         </div>
 
         <button class="game-restart">Restart Game</button>
-    </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
