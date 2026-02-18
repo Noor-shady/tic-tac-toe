@@ -73,3 +73,12 @@ body {
 
 .cell:active {
     transform: scale(0.95);
+}
+
+.cell[data-player="X"] {
+    color: var(--player-x-color); 
+}
+
+.cell[data-player="O"] {
+    color: var(--player-o-color); 
+}
