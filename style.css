@@ -82,3 +82,33 @@ body {
 .cell[data-player="O"] {
     color: var(--player-o-color); 
 }
+
+.cell.winning-cell {
+    background-color: #d4edda;
+    border-color: #28a745;
+    animation: pop 0.3s ease-in-out;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Restart Button */
+.game-restart {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--btn-bg);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.game-restart:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+}
