@@ -57,3 +57,29 @@ class TicTacToe {
         this.gameState[index] = this.currentPlayer;
         clickedCell.innerHTML = this.currentPlayer;
         clickedCell.setAttribute('data-player', this.currentPlayer);
+        
+        clickedCell.setAttribute('aria-label', `${this.currentPlayer} in cell ${index + 1}`);
+    }
+
+    handleResultValidation() {
+        let roundWon = false;
+        let winningLine = [];
+
+        for (let i = 0; i < this.winningConditions.length; i++) {
+            const [a, b, c] = this.winningConditions[i];
+            const cellA = this.gameState[a];
+            const cellB = this.gameState[b];
+            const cellC = this.gameState[c];
+
+            if (cellA === '' || cellB === '' || cellC === '') continue;
+
+            if (cellA === cellB && cellB === cellC) {
+                roundWon = true;
+                winningLine = [a, b, c];
+                break;
+            }
+        }
+
+        if (roundWon) {
+            this.statusDisplay.innerHTML = this.winningMessage();
+            this.gameActive = false;
