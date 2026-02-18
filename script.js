@@ -1,6 +1,5 @@
 class TicTacToe {
     constructor() {
-        // Cache DOM elements
         this.statusDisplay = document.querySelector('.game-status');
         this.cells = document.querySelectorAll('.cell');
         this.restartBtn = document.querySelector('.game-restart');
@@ -47,3 +46,14 @@ class TicTacToe {
     handleCellClick(event) {
         const clickedCell = event.target;
         const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
+
+        if (this.gameState[clickedCellIndex] !== "" || !this.gameActive) return;
+
+        this.handleCellPlayed(clickedCell, clickedCellIndex);
+        this.handleResultValidation();
+    }
+
+    handleCellPlayed(clickedCell, index) {
+        this.gameState[index] = this.currentPlayer;
+        clickedCell.innerHTML = this.currentPlayer;
+        clickedCell.setAttribute('data-player', this.currentPlayer);
